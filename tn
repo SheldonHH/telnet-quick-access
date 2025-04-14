@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# --- Config ---
+HOST="192.168.23.28"
+
+# --- Check port input ---
+if [ -z "$1" ]; then
+  echo "Usage: $0 <port>"
+  exit 1
+fi
+
+PORT="$1"
+
+# --- Connect via telnet ---
+echo "Connecting to $HOST:$PORT ..."
+/usr/local/bin/telnet "$HOST" "$PORT"
