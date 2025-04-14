@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# --- Check IP input ---
+if [ -z "$1" ]; then
+  echo "Usage: $0 <new-ip-address>"
+  exit 1
+fi
+
+NEW_IP="$1"
+TN_FILE="/usr/local/bin/tn"
+
+# --- Check if tn file exists ---
+if [ ! -f "$TN_FILE" ]; then
+  echo "Error: $TN_FILE does not exist."
+  exit 1
+fi
+
+# --- Replace the HOST line (macOS compatible) ---
+sed -i '' -E "s/^HOST=\"[^\"]+\"/HOST=\"$NEW_IP\"/" "$TN_FILE"
+
+echo "✅ Updated HOST in $TN_FILE to $NEW_IP"
